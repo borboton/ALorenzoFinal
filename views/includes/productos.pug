@@ -1,0 +1,27 @@
+div
+    if items.length > 0
+        div.table-responsive
+            table.table.table-dark.table-striped
+                thead                
+                    tr                        
+                        th # 
+                        th Nombre
+                        th Descripcion
+                        th Precio
+                        th Foto 
+                        th Codigo 
+                        th Stock 
+                        th Date                                   
+                each item in items
+                    tr
+                        td #{item.id}
+                        td #{item.nombre}
+                        td #{item.descripcion}
+                        td #{item.precio}
+                        td
+                            img(style="width: 25px;" src=item.foto)
+                        td #{item.codigo}
+                        td #{item.stock}
+                        td #{item.ts}                        
+    else 
+        h3.alert.alert-danger No existen productos

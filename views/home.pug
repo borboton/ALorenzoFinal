@@ -1,0 +1,23 @@
+include ./includes/head
+body
+  .container
+    h1.h1 Ingreso Productos       
+    
+    br
+    div
+    form(action="/api/productos" method="POST")
+      div.form-group
+          label Nombre
+          input.form-control(type="text" name="nombre")    
+          label Descripcion
+          input.form-control(type="text" name="descripcion")    
+          label Precio
+          input.form-control(type="text" name="precio")
+          label Foto
+          input.form-control(type="text" name="foto")
+          label Codigo
+          input.form-control(type="text" name="codigo")
+          label Stock
+          input.form-control(type="text" name="stock")
+          button.btn.btn-success.mt-3.mb-5(type="submit") Enviar
+    include ./includes/productos
