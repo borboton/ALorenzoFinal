@@ -6,7 +6,9 @@ const routerCarrito = Router();
 
 const carts = []
 let id = 0
+
 // --------------- post ------------------------//
+
 routerCarrito.post('/', (req, res) => {
     const newCart = { "id" : `${++id}`, "timestamp": new Date()} 
     const carrito = new Cart(newCart)
@@ -16,7 +18,7 @@ routerCarrito.post('/', (req, res) => {
     console.log("--------------------------------");
 });
 
-// --------------- post ------------------------//
+//--------------- post --------------------------//
 
 routerCarrito.post('/:id/productos', async(req, res) => {
     const producto = await source.getById(req)
@@ -26,8 +28,7 @@ routerCarrito.post('/:id/productos', async(req, res) => {
     res.json(carts)
 });
 
-
-// --------------- post ------------------------//
+//--------------- get --------------------------//
 
 routerCarrito.get('/:id', (req, res) => {
     console.log(req.params.id)
@@ -38,14 +39,16 @@ routerCarrito.get('/:id', (req, res) => {
 });
 
 
-// --------------- delete ------------------------//
+//--------------- delete ------------------------//
+
 routerCarrito.delete('/:id/productos/:id_prod', (req, res) => {
     carts[req.params.id].removeItem(req.params.id_prod)
     console.log(req.params.id);
     res.json(carts)
 });
 
-// --------------- get ------------------------//
+//--------------- get ---------------------------//
+
 routerCarrito.get('/', (req, res) => {
     res.json(carts)
 });

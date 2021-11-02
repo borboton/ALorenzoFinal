@@ -1,21 +1,32 @@
 const express = require('express')
+const session = require('express-session');
+const pug = require('pug');
 const { routerProductos } = require("./router/productos")
 const { routerCarrito } = require("./router/carrito")
+const { routerHome } = require("./router/home")
 
 const PORT = process.env.PORT || 8080
 const app = express()
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-//app.use(express.static('public'))
+// PUG
+app.set('views', './views');
+app.set('view engine', 'pug');
 
 /* ------------------------------------------------------ */
-/* Cargo los routers */
+/* Express session */
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(session({secret: 'secret1234',saveUninitialized: true,resave: true}));
+app.use(express.static('public'))
+
+/* ------------------------------------------------------ */
+/* Routers */
+app.use('/', routerHome)
 app.use('/api/productos', routerProductos)
 app.use('/api/carrito', routerCarrito)
 
-/* ------------------------------------------------------ */
 /* Server Start */
+
 const server = app.listen(PORT, "0.0.0.0", () => {
     console.log(`listen ${server.address().address}:${server.address().port}`)
 })

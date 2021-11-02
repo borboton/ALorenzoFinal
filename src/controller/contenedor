@@ -7,7 +7,8 @@ class Container{
     async save(req){        
         const productos = await this.getAll()
         req.id = Math.max(...productos.map(obj => obj.id), 0) + 1
-        productos.push(req.body)
+        req.ts = new Date()
+        productos.push(req)
         await this.write(productos)
         return productos
     };
