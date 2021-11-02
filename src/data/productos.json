@@ -18,5 +18,15 @@
     "stock": "2",
     "id": 2,
     "ts": "2021-11-02T16:52:28.623Z"
+  },
+  {
+    "nombre": "Regla3",
+    "descripcion": "Regla",
+    "precio": "999",
+    "foto": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+    "codigo": "1",
+    "stock": "1",
+    "id": 3,
+    "ts": "2021-11-02T18:59:43.081Z"
   }
 ]
