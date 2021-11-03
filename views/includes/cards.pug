@@ -1,0 +1,21 @@
+each item in items
+    item.nombre
+    div.col-md-4
+        div.card
+            div.card-block 
+                img.card-img-top(src=item.foto, alt='')
+                .card-body
+                    h5.card-title= item.nombre 
+                    p.card-text Desc: 
+                        =item.descripcion
+                    p.card-text Cod.
+                        =item.codigo
+                    p.card-text Id.
+                        =item.id
+                button(onclick='editItem()')
+                    h5.icon-edit(aria-hidden='true')
+                button(onclick='deleteItem()')
+                    h5.icon-remove(aria-hidden='true')
+                .card-footer
+                    Footer                        
+                        h5.icon-usd=item.precio

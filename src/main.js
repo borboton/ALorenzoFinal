@@ -1,12 +1,20 @@
 const express = require('express')
 const session = require('express-session');
 const pug = require('pug');
+
+const { Server: HttpServer } = require('http');
+const { Server: IOServer, Socket } = require('socket.io')
+
+const app = express()
+const httpServer = new HttpServer(app)
+const io = new IOServer(httpServer)
+
 const { routerProductos } = require("./router/productos")
 const { routerCarrito } = require("./router/carrito")
 const { routerHome } = require("./router/home")
 
 const PORT = process.env.PORT || 8080
-const app = express()
+// const app = express()
 
 // PUG
 app.set('views', './views');
@@ -27,7 +35,7 @@ app.use('/api/carrito', routerCarrito)
 
 /* Server Start */
 
-const server = app.listen(PORT, "0.0.0.0", () => {
-    console.log(`listen ${server.address().address}:${server.address().port}`)
+const server = httpServer.listen(PORT, "0.0.0.0", () => {
+    console.log(`listen ${httpServer.address().address}:${server.address().port}`)
 })
 server.on('error', error => console.log(`Error en servidor ${error}`))

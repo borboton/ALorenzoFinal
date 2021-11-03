@@ -3,12 +3,20 @@ const { Router } = require('express');
 
 const source = new Container('./src/data/productos.json');
 const routerProductos = Router();
-const root = "admin"
+
+const user = "admin"
+
+/* const auth = function(req, res, next) {
+  if (req.session && req.session.user === "root" && req.session.admin)
+    return next();
+  else
+    return res.sendStatus(401);
+}; */
 
 function isAdmin(req, res, next) {
     const sess = req.session 
     console.log(sess);
-    if ( sess.username === root ) {
+    if ( sess.username === user ) {
       next();
     } else {      
       res.json({ "error": -1, "descripcion": req.baseUrl, "metodo" : req.method, "info": "No autorizado"})
@@ -33,8 +41,8 @@ routerProductos.get('/:id',[isUser], async (req, res) => {
 });
 
 routerProductos.post('/', [isAdmin], async (req, res) => {
-    await source.save(req.body)
-    return res.json({id : req.body.id})      
+    await source.save(req.body)      
+    res.json({id : req.body.id})
 })
 
 routerProductos.put('/:id', [isAdmin], async (req, res) => {    

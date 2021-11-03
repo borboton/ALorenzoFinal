@@ -1,0 +1,24 @@
+{{#if items}}
+    {{#each items}}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-block">
+            <img class="card-img-top" src="{{this.foto}}" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{this.nombre}}</h5>
+                <p class="card-text">{{this.descripcion}}</p>
+            </div>
+            <div class="card-footer">
+                <Footer>
+                    <h5><i class="icon-usd">{{this.precio}}</i></h5>
+                </Footer>
+            </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+{{else}}
+    <h3 class="alert alert-danger">No existen productos</h1>
+{{/if}}
+
