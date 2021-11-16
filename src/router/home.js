@@ -1,8 +1,8 @@
-const { Router } = require('express');
-const Container = require("../controller/contenedor")
-const routerHome = Router();
+import express from "express";
+//const Container = require("../controller/contenedor.js")
+const routerHome = express.Router();
 
-const source = new Container('./src/data/productos.json');
+//const source = new Container('./src/data/productos.json');
 
 /* ------------------------------------------------------ */
 /* Login */
@@ -27,5 +27,4 @@ routerHome.get('/signout', function (req, res) {
     res.redirect('/');
   });
 
-exports.routerHome = routerHome;
-
+export default routerHome;

@@ -1,8 +1,8 @@
-const fs = require('fs');
+import { promises as fs } from "fs";
 
-class Container{
-    constructor(dataource){
-        this.dataource = dataource;
+class ContenedorArchivo{
+    constructor(ruta){
+        this.dataource = ruta;
     }
     async save(req){        
         const productos = await this.getAll()
@@ -12,17 +12,18 @@ class Container{
         await this.write(productos)
         return productos
     };
-    async getAll(dataource){
+    async getAll(ruta){
         try {
-            const productos = await fs.promises.readFile(this.dataource)             
+            const productos = await fs.readFile(this.dataource)             
             return JSON.parse(productos)
         } catch (error) {
             return []
         }
     };
     async write(productos){
+        console.log(this);
         try {            
-            await fs.promises.writeFile( this.dataource, JSON.stringify(productos,null,2),'utf-8' )
+            await fs.writeFile( this.dataource, JSON.stringify(productos,null,2),'utf-8' )
         } catch (error){
             console.log(error)
         }
@@ -43,9 +44,15 @@ class Container{
     async editById(req, res){
         const productos = await this.getAll()
         const index = productos.findIndex(( item => item.id === parseInt(res.params.id) ))
-        productos[index].title = req.body.title
-        productos[index].price = req.body.price
-        productos[index].thumbnail = req.body.thumbnail
+
+        productos[index].nombre = req.body.nombre
+        productos[index].descripcion = req.body.descripcion
+        productos[index].precio = req.body.precio
+        productos[index].foto = req.body.foto
+        productos[index].codigo = req.body.codigo
+        productos[index].stock = req.body.stock
+        productos[index].precio = req.body.precio
+
         await this.write(productos)
         return productos[index]
     }
@@ -55,8 +62,8 @@ class Container{
         await this.write( productos.filter( item => { return item.id !== parseInt(req.params.id)} ))
     };
     async deleteAll(){
-        await fs.promises.writeFile( this.dataource, '', function(){console.log('done')} )
+        await fs.writeFile( this.dataource, '', function(){console.log('done')} )
     }
 }
 
-module.exports = Container;
+export default ContenedorArchivo;

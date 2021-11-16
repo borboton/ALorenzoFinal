@@ -1,8 +1,9 @@
-const { Router } = require('express');
-const Container = require("../controller/contenedor")
-const Cart = require('../controller/cart');
-const source = new Container('data/productos.json');
-const routerCarrito = Router();
+import express from 'express';
+//const Container = require("../controller/contenedor")
+//const Cart = require('../controller/cart');
+//const source = new Container('data/productos.json');
+
+const routerCarrito = express.Router();
 
 const carts = []
 let id = 0
@@ -53,6 +54,4 @@ routerCarrito.get('/', (req, res) => {
     res.json(carts)
 });
 
-
-exports.routerCarrito = routerCarrito;
-
+export default routerCarrito;

@@ -1,10 +1,9 @@
-const Container = require("../controller/contenedor")
-const { Router } = require('express');
+import express from "express";
+import ProductosDaoArchivos from "../dao/productos/ProductosDaoArchivos.js";
+const source = new ProductosDaoArchivos();
+const routerProductos = express.Router();
 
-const source = new Container('./src/data/productos.json');
-const routerProductos = Router();
-
-const user = "admin"
+console.log(ProductosDaoArchivos);
 
 /* const auth = function(req, res, next) {
   if (req.session && req.session.user === "root" && req.session.admin)
@@ -23,34 +22,31 @@ function isAdmin(req, res, next) {
     }
 }
 
-function isUser(req, res, next) {    
-    const sess = req.session 
-    if ( sess.username ) {
-      next();
-    } else {      
-      res.json({ "error": -1, "descripcion": req.baseUrl, "metodo" : req.method, "info": "No autorizado"})
-    }
-}
-
-routerProductos.get('/', [isUser], async (req, res) => {    
+// --------------- get ------------------------//
+routerProductos.get('/', async (req, res) => {    
   res.json(await source.getAll())
 });
 
-routerProductos.get('/:id',[isUser], async (req, res) => {
-    res.json(await source.getById(req))
+// --------------- get ------------------------//
+routerProductos.get('/:id', async (req, res) => {
+  res.json(await source.getById(req))
 });
 
-routerProductos.post('/', [isAdmin], async (req, res) => {
-    await source.save(req.body)      
-    res.json({id : req.body.id})
+// --------------- post ------------------------//
+routerProductos.post('/', async (req, res) => {
+  await source.save(req.body)
+  res.json({id : req.body.id})
 })
 
-routerProductos.put('/:id', [isAdmin], async (req, res) => {    
-    res.json( await source.editById(req, req) );
+// --------------- put ------------------------//
+routerProductos.put('/:id', async (req, res) => {    
+  res.json( await source.editById(req, req) );
 });
 
-routerProductos.delete('/:id', [isAdmin], async (req, res) => {
+// --------------- delete ------------------------//
+routerProductos.delete('/:id', async (req, res) => {
     const alert = await source.deleteById(req)
 });
 
-exports.routerProductos = routerProductos;
+
+export default routerProductos;

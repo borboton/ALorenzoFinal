@@ -6,11 +6,16 @@
             <img class="card-img-top" src="{{this.foto}}" alt="">
             <div class="card-body">
                 <h5 class="card-title">{{this.nombre}}</h5>
-                <p class="card-text">{{this.descripcion}}</p>
+                <p class="card-text">Descr: {{this.descripcion}}</p>
+                <p class="card-text" id="idprod">Id: {{this.id}}</p>
+                <p class="card-text">Codigo: {{this.codigo}}</p>
+                <p class="card-text">Stock: {{this.stock}}</p>
             </div>
             <div class="card-footer">
                 <Footer>
                     <h5><i class="icon-usd">{{this.precio}}</i></h5>
+                    <button>Editar</button>
+                    <button>Quitar</button>
                 </Footer>
             </div>
             </div>
