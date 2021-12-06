@@ -1,9 +1,9 @@
 import express from "express";
-import dao from "../dao/daos.js";
+import { productosDao, carritoDao } from "../dao/daos.js";
+
 const routerProductos = express.Router();
 
-const dataAccessObject = new dao.ProductosDaoArchivos()
-console.log(dataAccessObject)
+const source = productosDao
 
 /* const auth = function(req, res, next) {
   if (req.session && req.session.user === "root" && req.session.admin)

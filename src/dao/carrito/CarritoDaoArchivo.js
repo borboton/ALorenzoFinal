@@ -2,7 +2,7 @@ import ContenedorArchivo from "../../controller/ContenedorArchivo.js";
 
 class CarritoDaoArchivo extends ContenedorArchivo {
     constructor() {
-        super('./DB/productos.json')
+        super('./DB/carrito.json')
     }
 }
 
