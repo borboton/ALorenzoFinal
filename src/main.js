@@ -26,7 +26,7 @@ app.use(express.static('public'))
 
 /* ------------------------------------------------------ */
 /* Routers */
-app.use('/', routerHome)
+//app.use('/', routerHome)
 app.use('/api/productos', routerProductos)
 app.use('/api/carrito', routerCarrito)
 

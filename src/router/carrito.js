@@ -1,7 +1,9 @@
 import express from 'express';
+import CarritoDaoMongoDb from '../dao/carrito/CarritoDaoMongoDb.js';
 //const Container = require("../controller/contenedor")
 //const Cart = require('../controller/cart');
 //const source = new Container('data/productos.json');
+const cart = new CarritoDaoMongoDb()
 
 const routerCarrito = express.Router();
 

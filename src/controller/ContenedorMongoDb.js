@@ -1,4 +1,27 @@
+import { MongoClient } from 'mongodb'
 
+class ContenedorMongoDb {
+
+    constructor() {
+        //super('')
+    }
+    
+
+}
+
+const uri = "mongodb+srv://coderhouse:<password>@cluster0.wduji.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
+export default ContenedorMongoDb;
+
+/* 
 module.exports = function Cart(cart) {
     
     this.id = cart.id || 0;
@@ -27,3 +50,4 @@ module.exports = function Cart(cart) {
         return arr;
     };
 };
+ */
