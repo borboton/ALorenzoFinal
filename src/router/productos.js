@@ -34,13 +34,12 @@ routerProductos.get('/:id', async (req, res) => {
 
 // --------------- post ------------------------//
 routerProductos.post('/', async (req, res) => {
-  await source.save(req.body)
-  res.json({id : req.body.id})
+  res.json(await source.save(req.body))
 })
 
 // --------------- put ------------------------//
 routerProductos.put('/:id', async (req, res) => {    
-  res.json( await source.editById(req, req) );
+  res.json( await source.editById(req, res) );
 });
 
 // --------------- delete ------------------------//

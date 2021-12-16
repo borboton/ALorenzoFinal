@@ -1,24 +1,31 @@
+
 class ContenedorMemoria {
     constructor() {
         this.elementos = []
     }
 
     async save(req){
-    };
+        const productos = await this.getAll()
+        req.id = Math.max(...productos.map(obj => obj.id), 0) + 1
+        req.ts = new Date()
+        productos.push(req)
+        await this.write(productos)
+        return productos
+    }
     
     async getAll(ruta){        
         return [ ...this.elementos ]        
     };
 
     async write(productos){
-        this.elementos.push(newElem)
-        return newElem
+        this.elementos.push(productos)
+        return productos
     };
 
     async getById(req){
-        const elem = this.elementos.find(elem => elem.id == id)
-        if (!elem) {
-            throw new Error(`Error al listar: elemento no encontrado`)
+        const elem = this.elementos.find(elem => elem.id == req.params.id)
+        if ('') {            
+            return ({ error : 'producto no encontrado' })
         } else {
             return elem
         }

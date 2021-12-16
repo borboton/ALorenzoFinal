@@ -8,5 +8,25 @@
     "stock": "400",
     "id": 1,
     "ts": "2021-11-16T13:07:47.804Z"
+  },
+  {
+    "nombre": "Cake",
+    "descripcion": "400",
+    "precio": "400",
+    "foto": "https://cdn2.iconfinder.com/data/icons/bakery-kitchen-3/512/cheesecake-cake-dessert-512.png",
+    "codigo": "400",
+    "stock": "400",
+    "id": 2,
+    "ts": "2021-12-09T03:47:05.167Z"
+  },
+  {
+    "nombre": "Cake",
+    "descripcion": "400",
+    "precio": "400",
+    "foto": "https://cdn2.iconfinder.com/data/icons/bakery-kitchen-3/512/cheesecake-cake-dessert-512.png",
+    "codigo": "400",
+    "stock": "400",
+    "id": 3,
+    "ts": "2021-12-09T03:48:16.459Z"
   }
 ]

@@ -1,9 +1,10 @@
 import express from "express";
+import { productosDao, carritoDao } from "../dao/daos.js";
 //const Container = require("../controller/contenedor.js")
 const routerHome = express.Router();
 
 //const source = new Container('./src/data/productos.json');
-
+const source = productosDao
 /* ------------------------------------------------------ */
 /* Login */
 routerHome.get('/', async (req, res) => {
@@ -18,7 +19,6 @@ routerHome.get('/', async (req, res) => {
 });
 
 routerHome.post('/login',(req, res) => {
-
     req.session.username = req.body.username;
     res.redirect('/')
 });

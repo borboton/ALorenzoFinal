@@ -1,18 +1,17 @@
 import express from "express" ;
 import session from "express-session";
+import { createServer } from "http";
+import { Server, Socket } from "socket.io";
 //import pug from "pug";
-//import HttpServer from "http";
-//import { IOServer, Socket } from "socket.io";
 
 const app = express()
-//const httpserver = new HttpServer(app)
-//const io = new IOServer(httpServer)
+const httpserver = new createServer(app)
+const io = new Server(httpserver)
 
 import routerCarrito from "./router/carrito.js";
 import routerProductos from "./router/productos.js";
 import routerHome from "./router/home.js";
 
-const PORT = process.env.PORT || 8080
 // PUG
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -26,18 +25,16 @@ app.use(express.static('public'))
 
 /* ------------------------------------------------------ */
 /* Routers */
-//app.use('/', routerHome)
+app.use('/', routerHome)
 app.use('/api/productos', routerProductos)
 app.use('/api/carrito', routerCarrito)
 
 /* Server Start */
+console.log("# export persistencia=memoria|archivo|firebase|mongodb ");
+console.log(`Persistencia env : ${process.env.persistencia}`)
+const PORT = process.env.PORT || 8080
 
-const server = app.listen(PORT, ()=> {
-    console.log("Listen server");
+const httpd = httpserver.listen(8080, "0.0.0.0", function () {
+    console.log(`Servidor Http con Websockets escuchando en el puerto ${this.address().port}`)
 })
-/* 
-const server = httpserver.listen(PORT, "0.0.0.0", () => {
-    console.log(`listen ${httpserver.address().address}:${server.address().port}`)
-})
-server.on('error', error => console.log(`Error en servidor ${error}`)) 
-*/
+httpd.on('error', error => console.log(`Error en servidor ${error}`))
